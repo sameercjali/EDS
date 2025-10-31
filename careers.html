@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Careers – ECODRIP SOLUTIONS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+nav {
+  position: sticky;
+  top: 0;
+  background: #2e7d32;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  color: white;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffeb3b;
+  transition: .3s;
+}
+nav a:hover::after {
+  width: 100%;
+}
+section {
+  text-align: center;
+  padding: 80px 20px;
+}
+.job {
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 700px;
+}
+.job h3 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+footer {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: auto;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">🌿 ECODRIP SOLUTIONS</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <!-- ✅ fixed logout link -->
+    <li><a href="#" id="logoutLink">Logout</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Join Our Team</h2>
+  <div class="job">
+    <h3>Full Stack Java Developer</h3>
+    <p><b>Location:</b> Hyderabad | <b>Experience:</b> 0–2 years</p>
+    <p>Develop web dashboards and backend APIs for IoT systems using Java, Spring Boot, and React.</p>
+  </div>
+  <div class="job">
+    <h3>Embedded Systems Engineer</h3>
+    <p><b>Location:</b> Remote</p>
+    <p>Design firmware for ESP32-based modules for automation and sensor integration.</p>
+  </div>
+  <div class="job">
+    <h3>Field Technician</h3>
+    <p><b>Location:</b> Across India</p>
+    <p>Install and maintain ECODRIP hardware, conduct customer training, and troubleshoot on-site.</p>
+  </div>
+</section>
+
+<!-- ✅ Fixed Logout Script -->
+<script>
+  const logoutLink = document.getElementById('logoutLink');
+  if (logoutLink) {
+    logoutLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      localStorage.removeItem('ecodrip_user');
+      window.location.href = '/';  // ✅ goes to Express route -> login.ejs
+    });
+  }
+</script>
+
+<footer>© 2025 ECODRIP SOLUTIONS Pvt. Ltd.</footer>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Features – ECODRIP SOLUTIONS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+nav {
+  position: sticky;
+  top: 0;
+  background: #2e7d32;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffeb3b;
+  transition: .3s;
+}
+nav a:hover::after {
+  width: 100%;
+}
+section {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+section ul {
+  list-style: none;
+  text-align: left;
+  margin-top: 30px;
+  line-height: 1.8;
+}
+section li {
+  background: white;
+  margin: 10px 0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+footer {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: auto;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">🌿 ECODRIP SOLUTIONS</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Features of ECODRIP Smart Irrigation System</h2>
+  <p>Our IoT-based irrigation system is designed to help farmers save water and increase productivity.  
+  The project currently focuses on **real-time soil moisture monitoring**, and will soon be upgraded to include **automated motor control**.</p>
+
+  <ul>
+    <li>🌱 <b>Real-Time Soil Moisture Monitoring:</b>  
+    Continuously measures soil moisture using sensors and sends live data to the dashboard. Farmers can instantly check soil health.</li>
+
+    <li>📊 <b>Visual Data Dashboard:</b>  
+    Displays soil moisture levels clearly, helping farmers make quick and informed decisions.</li>
+
+    <li>📶 <b>IoT Cloud Integration:</b>  
+    The system sends moisture readings over Wi-Fi, allowing remote access from anywhere.</li>
+
+    <li>💧 <b>Smart Water Management:</b>  
+    Helps reduce water wastage by alerting users when soil moisture drops below the threshold.</li>
+
+    <li>⚙️ <b>Upcoming Feature – Automatic Motor Control:</b>  
+    Currently under development. In the next version, the system will automatically turn the motor ON/OFF based on moisture levels for complete automation.</li>
+
+    <li>🔋 <b>Energy Efficient Design:</b>  
+    Designed to consume minimal power, making it suitable for rural and off-grid environments.</li>
+  </ul>
+</section>
+
+<script>
+function logout() {
+  localStorage.removeItem('ecodrip_user');
+  window.location.href = 'login.ejs';
+}
+</script>
+
+<footer>© 2025 ECODRIP SOLUTIONS Pvt. Ltd.</footer>
+</body>
+</html>

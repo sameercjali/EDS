@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – ECODRIP SOLUTIONS</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #2e7d32;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      color: white;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ffeb3b;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+
+    iframe {
+      width: 90%;
+      max-width: 800px;
+      height: 400px;
+      border: none;
+      border-radius: 15px;
+      margin-top: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      background: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 18px 0;
+      margin-top: auto;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">🌿 ECODRIP SOLUTIONS</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <!-- ✅ fixed logout link -->
+      <li><a href="#" id="logoutLink">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>Contact Us</h2>
+    <p><b>Address:</b></p>
+    <p>ECODRIP SOLUTIONS Pvt. Ltd., <br> CMR Technical Campus, Medchal, Telangana, India</p>
+    <p><b>Email:</b> ecodripsolutions@gmail.com</p>
+    <p><b>Phone:</b> +91 8688480933</p>
+
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.625331126297!2d78.48507027471537!3d17.59714438313632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb85db557ffa4d%3A0xa627221feea2fbec!2sCMR%20Technical%20Campus!5e0!3m2!1sen!2sin!4v1715567890123!5m2!1sen!2sin"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </section>
+
+  <!-- ✅ Working Logout Script -->
+  <script>
+    const logoutLink = document.getElementById('logoutLink');
+    if (logoutLink) {
+      logoutLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('ecodrip_user');
+        window.location.href = '/'; // ✅ Goes to Express-rendered login.ejs
+      });
+    }
+  </script>
+
+  <footer>
+    © 2025 ECODRIP SOLUTIONS Pvt. Ltd.
+  </footer>
+</body>
+</html>

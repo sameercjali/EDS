@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Services – ECODRIP SOLUTIONS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+nav {
+  position: sticky;
+  top: 0;
+  background: #2e7d32;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffeb3b;
+  transition: .3s;
+}
+nav a:hover::after {
+  width: 100%;
+}
+section {
+  text-align: center;
+  padding: 80px 20px;
+}
+.service-box {
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 700px;
+}
+.service-box h3 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+footer {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: auto;
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">🌿 ECODRIP SOLUTIONS</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#" id="logoutLink">Logout</a></li>
+  </ul>
+</nav>
+
+<section>
+<h2>Our Services</h2>
+<div class="service-box"><h3>IoT Drip Irrigation Systems</h3><p>Smart irrigation modules that automate watering using soil moisture and environmental data. Fully customizable to crop type and farm size.</p></div>
+<div class="service-box"><h3>Farm Automation Consulting</h3><p>We help farms and agribusinesses design efficient IoT systems that reduce manual labor and improve productivity.</p></div>
+<div class="service-box"><h3>Data Analytics & Insights</h3><p>Our cloud dashboard delivers insights from soil and weather data to help farmers make informed decisions for better yields.</p></div>
+<div class="service-box"><h3>Maintenance & Support</h3><p>Dedicated technical support, product training, and field assistance for all ECODRIP installations.</p></div>
+</section>
+
+<!-- ✅ Working Logout Script -->
+<script>
+  const logoutLink = document.getElementById('logoutLink');
+  if (logoutLink) {
+    logoutLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      localStorage.removeItem('ecodrip_user');
+      window.location.href = '/';  // Redirects to Express route that renders login.ejs
+    });
+  }
+</script>
+
+<footer>© 2025 ECODRIP SOLUTIONS Pvt. Ltd.</footer>
+</body>
+</html>

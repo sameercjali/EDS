@@ -1,0 +1,161 @@
+<div class="card">
+  <h3>🌿 Your Device Control Panel</h3>
+  
+  <!-- Soil Moisture Gauge -->
+  <div class="gauge-container">
+    <svg id="moistureGauge" viewBox="0 0 100 60">
+      <!-- Background arc -->
+      <path d="M10,50 A40,40 0 0,1 90,50" stroke="#ddd" stroke-width="10" fill="none" />
+      <!-- Dynamic moisture arc -->
+      <path id="moistureArc" d="M10,50 A40,40 0 0,1 10,50" stroke="#43a047" stroke-width="10" fill="none" stroke-linecap="round" />
+      <text id="moistureText" x="50" y="40" font-size="14" text-anchor="middle" fill="#2e7d32">--%</text>
+    </svg>
+    <p>Soil Moisture</p>
+  </div>
+
+  <!-- Capsule Switch for Motor -->
+  <div class="switch-container">
+    <span class="label">Motor</span>
+    <label class="capsule-switch">
+      <input type="checkbox" id="motorSwitch" onchange="handleMotorToggle(this)">
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<style>
+.gauge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* Capsule switch styling */
+.switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.label {
+  font-weight: 600;
+  color: #2e7d32;
+  font-size: 1.1rem;
+}
+.capsule-switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+}
+.capsule-switch input { display: none; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 40px;
+  transition: .4s;
+}
+.slider:before {
+  content: "OFF";
+  position: absolute;
+  height: 32px; width: 32px;
+  left: 4px; bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  font-weight: 600;
+  color: #555;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #43a047;
+}
+input:checked + .slider:before {
+  transform: translateX(40px);
+  content: "ON";
+  color: #43a047;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  padding: 25px;
+  width: 340px;
+  text-align: center;
+  margin: 30px auto;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+</style>
+
+<script>
+// ✅ Replace with your actual Blynk Auth Token
+const BLYNK_TOKEN = "vjS_ZfXDiJ9UGEvPZhDQMsgc6j54IQjj";
+
+// 🟢 Read soil moisture (example: virtual pin V1)
+async function updateMoisture() {
+  try {
+    const res = await fetch(`https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&v1`);
+    const value = parseFloat(await res.text());
+    updateGauge(value);
+  } catch (err) {
+    console.error("Error reading data:", err);
+  }
+}
+
+// 🌈 Dynamic gradient color function
+function getMoistureColor(value) {
+  if (value <= 0) return "#aaa";           // grey
+  if (value <= 30) return "#ff9800";       // orange
+  if (value <= 50) return "#a5d6a7";       // light green
+  return "#2e7d32";                        // deep green
+}
+
+// 🌿 Update radial gauge display
+function updateGauge(value) {
+  const gauge = document.getElementById("moistureArc");
+  const text = document.getElementById("moistureText");
+
+  // Calculate end coordinates for arc
+  const clamped = Math.max(0, Math.min(100, value));
+  const endAngle = 180 * (clamped / 100);
+  const radians = (180 - endAngle) * Math.PI / 180;
+  const x = 50 - 40 * Math.cos(radians);
+  const y = 50 - 40 * Math.sin(radians);
+  const largeArc = endAngle > 180 ? 1 : 0;
+  const d = `M10,50 A40,40 0 ${largeArc},1 ${x},${y}`;
+
+  // Set path and color
+  gauge.setAttribute("d", d);
+  gauge.setAttribute("stroke", getMoistureColor(clamped));
+
+  // Update text
+  text.textContent = `${clamped.toFixed(0)}%`;
+  text.setAttribute("fill", getMoistureColor(clamped));
+}
+
+// ⚙️ Handle motor ON/OFF toggle
+async function handleMotorToggle(el) {
+  const state = el.checked ? 1 : 0;
+  try {
+    await fetch(`https://blynk.cloud/external/api/update?token=${BLYNK_TOKEN}&v0=${state}`);
+    console.log(state ? "Motor turned ON 🌊" : "Motor turned OFF 📴");
+  } catch (err) {
+    alert("Error controlling motor");
+  }
+}
+
+// 🔄 Refresh moisture every 3 seconds
+setInterval(updateMoisture, 3000);
+updateMoisture();
+</script>

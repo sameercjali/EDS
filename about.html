@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>About – ECODRIP SOLUTIONS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+body{font-family:'Poppins',sans-serif;background:#f9f9f9;color:#333;display:flex;flex-direction:column;min-height:100vh;}
+nav{position:sticky;top:0;background:#2e7d32;display:flex;justify-content:space-between;align-items:center;padding:15px 50px;color:white;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+nav ul{list-style:none;display:flex;gap:30px;}nav a{color:white;text-decoration:none;position:relative;}nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:#ffeb3b;transition:.3s;}nav a:hover::after{width:100%;}
+section{text-align:center;padding:80px 20px;}
+.team{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin-top:30px;}
+.member{background:white;border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,0.1);width:250px;padding:20px;}
+.member img{width:100%;border-radius:15px;margin-bottom:10px;}
+footer{background:#2e7d32;color:white;text-align:center;padding:18px 0;margin-top:auto;}
+</style></head>
+<body>
+<nav>
+    <div class="logo">
+      <img src="assets/logo.png" width="40" style="vertical-align: middle; margin-right: 8px;">
+      ECODRIP SOLUTIONS
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a class="logout-btn" href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+
+<section>
+  <h2>About Our Company</h2>
+  <p>Founded in 2025, ECODRIP SOLUTIONS Pvt. Ltd. is dedicated to sustainable agriculture through IoT and automation technology.</p>
+  <div class="team">
+    <div class="member"><img src="akshaya.png"><h3>AKSHAYA KALYANAM</h3><p>CEO – Visionary leader overseeing strategy and innovation.</p></div>
+    <div class="member"><img src="chaithanya.png"><h3>CHAITHANYA</h3><p>CTO – Expert in IoT architecture and embedded systems.</p></div>
+    <div class="member"><img src="sameer.png"><h3>SAMEER JALI</h3><p>COO – Ensures operations run efficiently with client satisfaction.</p></div>
+  </div>
+</section>
+<script>
+const user = localStorage.getItem('ecodrip_user');
+const navList = document.querySelector('nav ul');
+if (user) {
+  const logoutItem = document.createElement('li');
+  logoutItem.innerHTML = `<a href="#" onclick="logout()">Logout (${user})</a>`;
+  navList.appendChild(logoutItem);
+} else {
+}
+
+function logout() {
+  localStorage.removeItem('ecodrip_user');
+  window.location.href = 'login.html';
+}
+</script>
+<script>
+  function logout() {
+    localStorage.removeItem('ecodrip_user');
+    window.location.href = 'login.html'; // Redirect to login
+  }
+</script>
+
+
+
+<footer>© 2025 ECODRIP SOLUTIONS Pvt. Ltd.</footer>
+</body></html>
